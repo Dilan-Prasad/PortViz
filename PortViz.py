@@ -170,4 +170,3 @@ def print_stock_info(stocks):
         
 stocks = load_stocks("./stocks.json")
 print_stock_info(plot_portfolio_over_time(stocks))
-
