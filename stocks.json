@@ -1,0 +1,5 @@
+[
+    {"ticker": "AAPL", "avg_buy_price": 150, "quantity": 10},
+    {"ticker": "GOOGL", "avg_buy_price": 1200, "quantity": 5},
+    {"ticker": "MSFT", "avg_buy_price": 200, "quantity": 8}
+]

@@ -26,17 +26,22 @@ The PortViz program provides a rich visual representation of your stock portfoli
     - Customized layout to remove horizontal grid lines.
 
 ### Example Usage
+##### In stocks.json:
 
-```python
-stocks = [
-    {'ticker': 'AAPL', 'avg_buy_price': 150, 'quantity': 10},
-    {'ticker': 'GOOGL', 'avg_buy_price': 1200, 'quantity': 5},
-    {'ticker': 'MSFT', 'avg_buy_price': 200, 'quantity': 8}
+```json
+[
+    {"ticker": "AAPL", "avg_buy_price": 150, "quantity": 10},
+    {"ticker": "GOOGL", "avg_buy_price": 1200, "quantity": 5},
+    {"ticker": "MSFT", "avg_buy_price": 200, "quantity": 8}
 ]
-
-print_stock_info(plot_portfolio_over_time(stocks))
 ```
 
+##### Run command:
+```
+python3 PortViz.py
+```
+
+##### Output:
 ```
 Portfolio Summary:
 
@@ -49,3 +54,7 @@ ______                       ______________     ______________     _____________
  AAPL          15.00%         $1,500.00         $1,700.00           +$200.00             +13.33%
  MSFT          16.00%         $1,600.00         $1,800.00           +$200.00             +12.50%
 ``````
+
+
+
+

@@ -1,6 +1,11 @@
 import yfinance as yf
 import pandas as pd
 import plotly.graph_objects as go
+from json import load
+
+def load_stocks(filename):
+    with open(filename, 'r') as file:
+        return load(file)
 
 def plot_portfolio_over_time(stocks):
     # Extract tickers and quantities
@@ -124,7 +129,10 @@ def print_stock_info(stocks):
     total_initial_value = sum(value for _, value, _, _ in stocks)
 
     print("\nPortfolio Summary:\n")
-    print(f"Total Portfolio Performance: ${total_initial_value:,.2f} -> ${total_portfolio_value:,.2f} = ${total_portfolio_value - total_initial_value:,.2f} +{100 * (total_portfolio_value - total_initial_value) / (total_initial_value):.2f}%\n")
+    sign = "+"
+    if total_portfolio_value - total_initial_value < 0:
+        sign = "-"
+    print(f"Total Portfolio Performance: ${total_initial_value:,.2f} -> ${total_portfolio_value:,.2f} = {sign}${abs(total_portfolio_value - total_initial_value):,.2f} [{sign}{abs(100 * (total_portfolio_value - total_initial_value) / (total_initial_value)):.2f}%]\n")
 
     # Print the titles
     print(f"{'Ticker':<17} {'Initial Amount':>15} {'Current Amount':>17} {'Amount Change':>16} {'Percent Change':>17}")
@@ -160,17 +168,6 @@ def print_stock_info(stocks):
               f"{percent_change_str:>17}")
 
         
-# Example Data:
-stocks = [
-    {'ticker': 'AAPL', 'avg_buy_price': 169.52, 'quantity': 112.184},
-    {'ticker': 'AXP', 'avg_buy_price': 142.79, 'quantity': 7},
-    {'ticker': 'PLTR', 'avg_buy_price': 7.87, 'quantity': 54},
-    {'ticker': 'RIVN', 'avg_buy_price': 10.26, 'quantity': 45},
-    {'ticker': 'SOFI', 'avg_buy_price': 6.55, 'quantity': 114.829},
-    {'ticker': 'PM', 'avg_buy_price': 99.6, 'quantity': 9},
-    {'ticker': 'WDAY', 'avg_buy_price': 211, 'quantity': 9},
-    {'ticker': 'SPY', 'avg_buy_price': 547.15, 'quantity': 3}
-]
-
+stocks = load_stocks("./stocks.json")
 print_stock_info(plot_portfolio_over_time(stocks))
 
